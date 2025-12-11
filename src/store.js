@@ -3,7 +3,8 @@ import { createStore } from "redux";
 // Initial State
 const initialState = {
   user: {
-    userName: "Tejas",
+    userName: "Tejas Ghorpade",
+    AccountNo: 9323222234567,
     balance: 25000,
   },
 };
@@ -14,6 +15,11 @@ export const addMoney = (amt) => ({
   payload: amt,
 });
 
+export const removeMoney = (amt) => ({
+  type: "Remove_MONEY",
+  payload: amt,
+});
+
 // Reducer
 function reducer(state = initialState, action) {
   switch (action.type) {
@@ -21,8 +27,18 @@ function reducer(state = initialState, action) {
       return {
         user: {
           userName: state.user.userName,
+          AccountNo: state.user.AccountNo,
           balance: state.user.balance + action.payload,
-        },
+        }
+      };
+
+    case "Remove_MONEY":
+      return {
+        user: {
+          userName: state.user.userName,
+          AccountNo: state.user.AccountNo,
+          balance: state.user.balance - action.payload,
+        }
       };
 
     default: 
